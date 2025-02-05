@@ -1,9 +1,7 @@
 import React from "react";
 
 function Home() {
-  return <div>Home It Software</div>
-    error;
-  error2
+  return <div>Home It Software !</div>
 }
 
 export default Home;
