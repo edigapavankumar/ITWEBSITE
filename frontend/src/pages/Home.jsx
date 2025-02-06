@@ -192,33 +192,7 @@ const Home = () => {
             ))}
           </Row>
         </Section>
-
-        <Section title="Locations">
-          <ul className="text-center list-unstyled">
-            {companyInfo.locations.map((location, index) => (
-              <li key={index} className="my-2">
-                {location}
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section title="Contact Us">
-          <p className="text-center">
-            Reach out to us at contact@techvision.com
-          </p>
-        </Section>
       </Container>
-
-      <footer
-        style={{ backgroundColor: "#1995AD" }}
-        className="text-white text-center py-3"
-      >
-        <p>
-          &copy; {new Date().getFullYear()} {companyInfo.name}. All rights
-          reserved.
-        </p>
-      </footer>
     </>
   );
 };

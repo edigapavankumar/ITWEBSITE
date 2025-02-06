@@ -18,12 +18,16 @@
     "@toolpad/core": "^0.12.0",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "framer-motion": "^12.3.1",
     "motion": "^12.2.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.1.5",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.14",
+    "swiper": "^11.2.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -35,6 +39,6 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
-    "vite": "^6.0.1"
+    "vite": "^6.1.0"
   }
 }
