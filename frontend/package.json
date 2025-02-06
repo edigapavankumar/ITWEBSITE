@@ -17,6 +17,7 @@
     "@mui/styled-engine-sc": "^6.4.3",
     "@toolpad/core": "^0.12.0",
     "axios": "^1.7.9",
+    "@tailwindcss/vite": "^4.0.3",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.7",
     "http-status": "^2.1.0",
@@ -27,7 +28,9 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.1.5",
     "styled-components": "^6.1.14",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.2",
+    "react-icons": "^5.4.0",
+    "tailwindcss": "^4.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
