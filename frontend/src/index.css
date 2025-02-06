@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+* {
+  text-decoration: none !important;
+  list-style: none !important;
+  color: black;
+
+  box-sizing: border-box;
+}
