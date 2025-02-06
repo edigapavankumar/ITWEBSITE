@@ -27,25 +27,43 @@ const About = () => {
   return (
     <Container>
       {/* Top Banner */}
-            <Box
-        sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: 116.7,
-            backgroundImage: 'url(https://www.your-image-url.com/banner.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            padding: 2,
-            color: 'white', // Ensures text is readable on a dark background
-        }}
-        >
-        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Who We Are</Typography>
-        <Breadcrumbs sx={{ color: 'white' }}>
-            <Link href="/home" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
-            <Typography>About</Typography>
-        </Breadcrumbs>
-        </Box>
+      {/* Top Banner with Background Image */} <br></br>
+<Box
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 200,
+    padding: 2,
+    backgroundImage: 'url(https://www.fingent.com/wp-content/uploads/custom-software-development-01-1024x387-1.png)', // Change to your preferred image
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    color: '#fff', // White text for better contrast
+  }}
+>
+  {/* Overlay for better text visibility */}
+  <Box
+    sx={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Dark overlay for readability
+      zIndex: 1,
+    }}
+  />
+  
+  <Typography variant="h4" sx={{ position: 'relative', zIndex: 2, fontWeight: 'bold' }}>
+    Who We Are
+  </Typography>
+  
+  <Breadcrumbs sx={{ position: 'relative', zIndex: 2 }}>
+    <Link href="/home" color="inherit" underline="hover">Home</Link>
+    <Typography color="inherit">About</Typography>
+  </Breadcrumbs>
+</Box>
 
 
       {/* About Section */}

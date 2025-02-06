@@ -1,72 +1,60 @@
-import React from 'react';
-import { Typography, Container, Grid, Box, Breadcrumbs, Link, Card, CardContent } from '@mui/material';
-import { motion } from 'framer-motion';
+// src/pages/Services.jsx
+import React from "react";
+import { Grid, Card, CardContent, CardMedia, Typography, Container } from "@mui/material";
+import { motion } from "framer-motion";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const servicesList = [
-  { name: 'Web Development', description: 'Building scalable and responsive websites.' },
-  { name: 'Mobile App Development', description: 'Creating native and cross-platform mobile apps.' },
-  { name: 'Digital Marketing', description: 'Helping brands grow through digital strategies.' },
-  { name: 'Cloud Solutions', description: 'Implementing cloud infrastructures for business operations.' },
+const services = [
+  { title: "Web Development", description: "Building responsive and functional websites.",
+     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvGCDR5nBpsRnjkCoIccrnqoKpDSYUTG7MLA&s" },
+  { title: "Mobile Apps", description: "Creating apps that deliver a great experience.",
+     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlIMnjnXlViLQyMfBQAoaZl95XBh5jnywapJCBgC0EegvnrLh-yT_36JbaFzGdVV_5PfQ&usqp=CAU" },
+  { title: "Cloud Services", description: "Cloud solutions for better business performance.",
+     img: "https://treinetic.com/wp-content/uploads/2024/03/Worlds-Famous-Cloud-Service-Providers.jpg" },
+     { title: "Web Development", description: "Building responsive and functional websites.",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvGCDR5nBpsRnjkCoIccrnqoKpDSYUTG7MLA&s" },
+     { title: "Mobile Apps", description: "Creating apps that deliver a great experience.",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlIMnjnXlViLQyMfBQAoaZl95XBh5jnywapJCBgC0EegvnrLh-yT_36JbaFzGdVV_5PfQ&usqp=CAU" },
+     { title: "Cloud Services", description: "Cloud solutions for better business performance.",
+        img: "https://treinetic.com/wp-content/uploads/2024/03/Worlds-Famous-Cloud-Service-Providers.jpg" },
 ];
 
 const Services = () => {
   return (
     <Container>
-      {/* Top Banner */}
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: 116.7,
-          backgroundImage: 'url(https://www.your-image-url.com/services-banner.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          padding: 2,
-          color: 'white',
-        }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
-        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>Our Services</Typography>
-        <Breadcrumbs sx={{ color: 'white' }}>
-          <Link href="/home" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
-          <Typography>Services</Typography>
-        </Breadcrumbs>
-      </Box>
-
-      {/* Services Section */}
-      <Box sx={{ mt: 5, textAlign: 'center' }}>
-        <Typography variant="h4" gutterBottom>What We Offer</Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
-          We provide top-notch solutions tailored to your business needs.
+        <Typography variant="h4" gutterBottom align="center">
+          Our Services
         </Typography>
 
-        <Grid container spacing={4} justifyContent="center">
-          {servicesList.map((service, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                <Card
-                  sx={{
-                    background: 'rgba(255, 255, 255, 0.85)',
-                    backdropFilter: 'blur(5px)',
-                    borderRadius: '10px',
-                    boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
-                    padding: 2,
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h6" color="primary" fontWeight="bold">
-                      {service.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {service.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
+        {/* <Carousel>
+          {services.map((service, index) => (
+            <div key={index}>
+              <img src={service.img} alt={service.title} />
+              <p className="legend">{service.title}</p>
+            </div>
+          ))}
+        </Carousel> */}
+
+        <Grid container spacing={3} justifyContent="center" style={{ marginTop: "30px" }}>
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card>
+                <CardMedia component="img" height="200" image={service.img} alt={service.title} />
+                <CardContent>
+                  <Typography variant="h6">{service.title}</Typography>
+                  <Typography variant="body2">{service.description}</Typography>
+                </CardContent>
+              </Card>
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </motion.div>
     </Container>
   );
 };
