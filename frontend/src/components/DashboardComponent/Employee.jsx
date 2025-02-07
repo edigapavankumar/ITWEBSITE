@@ -1,5 +1,10 @@
 import * as React from "react";
-import { styled, useTheme, createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  styled,
+  useTheme,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -25,9 +30,15 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import ChatIcon from "@mui/icons-material/Chat";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import HomeIcon from "@mui/icons-material/Home";
 
 // Navigation items
 const NAVIGATION = [
+  {
+    segment: "home",
+    title: "Home Management",
+    icon: <HomeIcon />,
+  },
   { segment: "usermanagement", title: "User Management", icon: <PeopleIcon /> },
   {
     segment: "contentmanagement",
@@ -60,52 +71,82 @@ const drawerWidth = 240;
 const themeWithCustomColors = createTheme({
   palette: {
     primary: {
-      main: "#1995AD", // Primary color
+      main: "#1995AD",
     },
     secondary: {
-      main: "#A1D6E2", // Secondary color
+      main: "#A1D6E2",
     },
     background: {
-      default: "#F1F1F2", // Background color
+      default: "#F1F1F2",
     },
   },
 });
 
-const Main = styled(Box)(({ theme }) => ({
+// Styled Main content
+const Main = styled("main", {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
   backgroundColor: theme.palette.background.default,
-  minHeight: '100vh',
-  [theme.breakpoints.down('sm')]: {
+  minHeight: "100vh",
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: open ? `${drawerWidth}px` : "0px",
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: "0px",
     padding: theme.spacing(1),
+  },
+}));
+
+// Styled AppBar
+const CustomAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
+  marginLeft: open ? `${drawerWidth}px` : "0px",
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    marginLeft: "0px",
   },
 }));
 
 export default function DashboardLayoutBasic() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = React.useState(!isMobile);
-  const [selectedSegment, setSelectedSegment] = React.useState("usermanagement");
-  const [reportOpen, setReportOpen] = React.useState(false); // Control the collapse state of reports
+  const [selectedSegment, setSelectedSegment] = React.useState("home");
+  const [reportOpen, setReportOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    setOpen(!isMobile);
+  }, [isMobile]);
 
   const handleDrawerToggle = () => setOpen(!open);
-
-  const handleReportsClick = () => setReportOpen(!reportOpen); // Toggle reports
+  const handleReportsClick = () => setReportOpen(!reportOpen);
 
   const renderContent = () => {
     switch (selectedSegment) {
+      case "home":
+        return <Typography paragraph>🏠 Home</Typography>;
       case "usermanagement":
-        return <Typography paragraph>User Management Content</Typography>;
+        return <Typography paragraph>👥 User Management Content</Typography>;
       case "contentmanagement":
-        return <Typography paragraph>Content Management Content</Typography>;
+        return <Typography paragraph>📝 Content Management Content</Typography>;
       case "financial":
-        return <Typography paragraph>Financial Reports</Typography>;
+        return <Typography paragraph>💰 Financial Reports</Typography>;
       case "taskreports":
-        return <Typography paragraph>Task Reports</Typography>;
+        return <Typography paragraph>📊 Task Reports</Typography>;
       case "communication":
-        return <Typography paragraph>Communication Center</Typography>;
+        return <Typography paragraph>💬 Communication Center</Typography>;
       default:
-        return <Typography paragraph>Select a menu item</Typography>;
+        return <Typography paragraph>🔍 Select a menu item</Typography>;
     }
   };
 
@@ -113,22 +154,22 @@ export default function DashboardLayoutBasic() {
     <ThemeProvider theme={themeWithCustomColors}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <CustomAppBar position="fixed" open={open}>
           <Toolbar>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerToggle}
               edge="start"
-              sx={{ marginRight: 5 }}
+              sx={{ marginRight: 2 }}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Busitron Dashboard
+            <Typography variant="h6" noWrap>
+              Admin Dashboard
             </Typography>
           </Toolbar>
-        </AppBar>
+        </CustomAppBar>
         <Drawer
           variant={isMobile ? "temporary" : "persistent"}
           open={open}
@@ -142,7 +183,12 @@ export default function DashboardLayoutBasic() {
             },
           }}
         >
-          <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            p={2}
+          >
             <Typography variant="h6">Menu</Typography>
             <IconButton onClick={handleDrawerToggle}>
               {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -169,20 +215,19 @@ export default function DashboardLayoutBasic() {
                     </ListItemButton>
                   )}
                 </ListItem>
-                {/* Sub-reports collapse */}
                 {item.children && (
                   <Collapse in={reportOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {item.children.map((child) => (
-                        <ListItem key={child.segment} disablePadding sx={{ pl: 4 }}>
-                          <ListItemButton
-                            onClick={() => setSelectedSegment(child.segment)}
-                            selected={selectedSegment === child.segment}
-                          >
-                            <ListItemIcon>{child.icon}</ListItemIcon>
-                            <ListItemText primary={child.title} />
-                          </ListItemButton>
-                        </ListItem>
+                        <ListItemButton
+                          key={child.segment}
+                          sx={{ pl: 4 }}
+                          onClick={() => setSelectedSegment(child.segment)}
+                          selected={selectedSegment === child.segment}
+                        >
+                          <ListItemIcon>{child.icon}</ListItemIcon>
+                          <ListItemText primary={child.title} />
+                        </ListItemButton>
                       ))}
                     </List>
                   </Collapse>
@@ -191,18 +236,9 @@ export default function DashboardLayoutBasic() {
             ))}
           </List>
         </Drawer>
-        <Main component="main">
-          <Toolbar /> {/* Add space for the AppBar */}
-          <Box
-            sx={{
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: 2,
-              p: 3,
-              minHeight: "80vh",
-            }}
-          >
-            {renderContent()}
-          </Box>
+        <Main open={open}>
+          <Toolbar />
+          {renderContent()}
         </Main>
       </Box>
     </ThemeProvider>

@@ -1,14 +1,14 @@
-import React, { useEffect, useContext } from 'react';
-import { EmployeeContext } from '../context/EmployeesContext';  // Fixed typo in import path
-import { Table, Container } from 'react-bootstrap';
-import './getEmployees.css'; // Assuming this file exists for styling
+import React, { useEffect, useContext } from "react";
+import { EmployeeContext } from "../context/UserContext"; // Fixed typo in import path
+import { Table, Container } from "react-bootstrap";
+import "./getEmployees.css"; // Assuming this file exists for styling
 
 const EmployeeListPage = () => {
   const { employeesData, getEmployees } = useContext(EmployeeContext); // Destructure context
 
   useEffect(() => {
     getEmployees(); // Fetch employees when component mounts
-  }, [getEmployees]);
+  }, []);
 
   return (
     <Container className="employee-container">
@@ -31,7 +31,7 @@ const EmployeeListPage = () => {
                 <td>{employee.lastName}</td>
                 <td>{employee.email}</td>
                 <td>{employee.phone}</td>
-                <td>{employee.status ? 'Active' : 'Inactive'}</td>
+                <td>{employee.status ? "Active" : "Inactive"}</td>
               </tr>
             ))
           ) : (

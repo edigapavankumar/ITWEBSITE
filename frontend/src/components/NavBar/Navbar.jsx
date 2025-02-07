@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { Navbar, Nav, Container, Button, Modal } from "react-bootstrap";
+import React from "react";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
-import Login1 from "../../pages/Login2step";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
-const Navbar1 = () => {
-  const [loginVisible, setLoginVisible] = useState(false);
 
-  const displayLogin = () => {
-    setLoginVisible(!loginVisible);
+const Navbar1 = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
   };
 
   return (
@@ -19,25 +20,29 @@ const Navbar1 = () => {
         className="shadow-sm p-2"
       >
         <Container>
-          <Navbar.Brand href="#" className="fw-bold text-black">
-            <div style={{display:"flex",alignItems:"center",}}>
-            <img
-              src={logo}
-              alt="logo"
-              style={{
-                width: "40px",
-                height: "40px",
-                marginRight: "10px",
-                borderRadius: "50%",
-              }}
-            />
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              OSTECHSERVICE
-            </motion.div>
+          <Navbar.Brand
+            onClick={() => handleNavigation("/")}
+            className="fw-bold text-black"
+            style={{ cursor: "pointer" }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={logo}
+                alt="logo"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  marginRight: "10px",
+                  borderRadius: "50%",
+                }}
+              />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                OSTECHSERVICE
+              </motion.div>
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
@@ -47,9 +52,17 @@ const Navbar1 = () => {
                 (item, index) => (
                   <Nav.Link
                     key={index}
-                    href={"#" + item.toLowerCase().replace(/ /g, "")}
+                    onClick={() =>
+                      handleNavigation(
+                        `/${item.toLowerCase().replace(/ /g, "")}`
+                      )
+                    }
                     className="mx-2"
-                    style={{ color: "black", fontWeight: "bold" }}
+                    style={{
+                      color: "black",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
                   >
                     {item}
                   </Nav.Link>
@@ -59,7 +72,7 @@ const Navbar1 = () => {
                 variant="outline-light"
                 className="ms-3"
                 style={{ borderColor: "#A1D6E2", color: "black" }}
-                onClick={displayLogin}
+                onClick={() => handleNavigation("/login1")}
               >
                 Login
               </Button>
@@ -67,13 +80,6 @@ const Navbar1 = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      {/* Login Popup (Modal) */}
-      <Modal show={loginVisible} onHide={displayLogin} centered>
-        <Modal.Body>
-          <Login1 />
-        </Modal.Body>
-      </Modal>
     </div>
   );
 };
