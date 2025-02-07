@@ -1,61 +1,61 @@
-import User from "../models/users.model.js";
+import Company from "../models/companies.model.js";
 
-export const getUsers=async(req,res)=>{
+export const getCompanies=async(req,res)=>{
     try {
-        const user=await User.find();
-        if(user.length===0){
-            return res.status(400).json({message:"No Users found"});
+        const company=await Company.find();
+        if(company.length===0){
+            return res.status(400).json({message:"No Companies found"});
         }
-        res.status(201).json(user);
+        res.status(201).json(company);
     }
     catch(err){
         res.status(500).json({message:err.message});
     }
 }
 
-export const postUsers = async (req, res) => {
+export const postCompanies = async (req, res) => {
     try {
-        const user = new User(req.body);
-        const result = await user.save();
-        res.status(201).json({ message: "User created successfully", user: result });
+        const company = new Company(req.body);
+        const result = await company.save();
+        res.status(201).json({ message: "Company created successfully", company: result });
     } catch (err) {
         console.error("Error here:", err);
-        res.status(500).json({ error: "Failed to create user", details: err.message });
+        res.status(500).json({ error: "Failed to create company", details: err.message });
     }
 };
-export const deleteUsers=async(req,res)=>{
+export const deleteCompanies=async(req,res)=>{
     try {
-        const user=await User.findByIdAndDelete(req.params.id);
-        if(!user){
-            return res.status(400).json({message:"User not found"});
+        const company=await Company.findByIdAndDelete(req.params.id);
+        if(!company){
+            return res.status(400).json({message:"Company not found"});
         }
-        res.send(user);
+        res.send(company);
     }
     catch(err){
         res.status(500).json({message:err.message});
     }
 };
-export const getOneUser = async (req, res) => {
+export const getOneCompany = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const company = await Company.findById(req.params.id);
 
-        if (!user) {
-            return res.status(404).json({ message: "User not found" }); // ✅ Use 404 for "Not Found"
+        if (!company) {
+            return res.status(404).json({ message: "Company not found" }); // ✅ Use 404 for "Not Found"
         }
 
-        res.status(200).json(user); // ✅ Use 200 for GET success
+        res.status(200).json(company); // ✅ Use 200 for GET success
     } catch (err) {
         res.status(500).json({ message: "Internal Server Error", error: err.message });
     }
 };
 
-export const updateUser=async(req,res)=>{
+export const updateCompany=async(req,res)=>{
     try{
-        let user=await User.updateOne({_id:req.params.id},{$set:req.body});
-        if(!user){
-            return res.status(400).json({message:"User not found"});
+        let company=await Company.updateOne({_id:req.params.id},{$set:req.body});
+        if(!company){
+            return res.status(400).json({message:"Company not found"});
             }
-        res.send(user);
+        res.send(company);
     }
     catch(err){
         res.status(500).json({message:err.message});
