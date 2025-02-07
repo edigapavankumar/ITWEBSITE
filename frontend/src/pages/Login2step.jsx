@@ -23,7 +23,7 @@ const Login1 = () => {
       setError('');
       setStep(2);
     } else {
-      setError('User does not exist. Check email or sign up.');
+      setError('User does not exist. Check email or Contact Admin.');
     }
   };
 
