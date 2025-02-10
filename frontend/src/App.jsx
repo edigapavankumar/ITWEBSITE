@@ -30,7 +30,7 @@ function App() {
             <EmployeeContextProvider>
                 <Routes>
                   
-                  <Route path="/home" element={<Home1 />} />
+                  <Route path="/" element={<Home1 />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/login1" element={<Login1 />} />
 

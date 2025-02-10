@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext.jsx'; 
 import { Table, Container } from 'react-bootstrap';
-import './getEmployees.css'; 
+// import './getEmployees.css'; 
 
 const EmployeeListPage = () => {
   const { employeesData, getEmployees } = useContext(UserContext); 
