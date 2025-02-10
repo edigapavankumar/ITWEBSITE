@@ -21,11 +21,11 @@ export const EmployeeContextProvider = ({ children }) => {
       console.error("Error fetching employees:", error);
     }
   };
-
+  getEmployees();
   const validateEmail = async (email) => {
     console.log("Inside Validate");
     const userExists = employeesData.find((user) => user.email === email);
-    return true;
+    return userExists;
   };
 
   const Login = async (email, password) => {

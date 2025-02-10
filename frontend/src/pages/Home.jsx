@@ -13,8 +13,8 @@ import { motion } from "framer-motion";
 
 const companyInfo = {
   name: "OsTechServices Ltd.",
-  ceo: "Ediga Pavan Kumar",
-  managingDirector: "Satish Kumar",
+  ceo: "Busitron",
+  managingDirector: "Ramesh",
   services: [
     {
       title: "Web Development",
@@ -118,35 +118,63 @@ const Home = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const [index, setIndex] = useState(0);
+  const services = companyInfo.services;
+  const nextSlide = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % services.length);
+  };
 
+  const prevSlide = () => {
+    setIndex(
+      (prevIndex) => (prevIndex - 1 + services.length) % services.length
+    );
+  };
   return (
     <>
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://via.placeholder.com/1200x400"
-            alt="Slide 1"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://via.placeholder.com/1200x400"
-            alt="Slide 2"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://via.placeholder.com/1200x400"
-            alt="Slide 3"
-          />
-        </Carousel.Item>
-      </Carousel>
+      <br />
+      <div className="m-4 ">
+        <Carousel interval={3000} fade>
+          <Carousel.Item>
+            <motion.img
+              className="d-block w-100"
+              src="https://t4.ftcdn.net/jpg/03/23/82/99/240_F_323829966_H32wLhoouiPinJ66KyggCvqQ2dFPuuQ1.jpg"
+              alt="Slide 1"
+              height={400}
+              width="100%"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <motion.img
+              className="d-block w-100"
+              src="https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg"
+              alt="Slide 2"
+              height={400}
+              width="100%"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <motion.img
+              className="d-block w-100"
+              src="https://as2.ftcdn.net/v2/jpg/03/32/23/41/1000_F_332234118_PzyvwhrMVm2yYMfu0q2CFnD1MeKHgD8w.jpg"
+              alt="Slide 3"
+              height={400}
+              width="100%"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
 
       <Container className="mt-5 pt-5">
-        <Section title="About Us">
+        <Section id="about" title="About Us">
           <p className="text-center">
             {companyInfo.name} was founded in November 2000. Led by CEO{" "}
             {companyInfo.ceo} and Managing Director{" "}
@@ -155,24 +183,71 @@ const Home = () => {
           </p>
         </Section>
 
-        <Section title="Services">
-          <Row>
-            {companyInfo.services.map((service, index) => (
-              <Col md={4} key={index}>
-                <Card
-                  className="shadow-lg p-3"
-                  style={{
-                    background: "linear-gradient(135deg, #A1D6E2, #1995AD)",
+        <Section>
+          <h2 className="text-center mb-4">Our Services</h2>
+          <div
+            className="d-flex justify-content-center position-relative"
+            style={{ height: "300px" }}
+          >
+            {services.map((service, i) => {
+              let position = "hidden";
+              if (i === index) position = "active";
+              else if (i === (index - 1 + services.length) % services.length)
+                position = "prev";
+              else if (i === (index + 1) % services.length) position = "next";
+
+              return (
+                <motion.div
+                  key={i}
+                  className={`position-absolute ${position}`}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.8,
+                    x: position === "prev" ? -100 : 100,
                   }}
+                  animate={{
+                    opacity: position === "active" ? 1 : 0.5,
+                    scale: position === "active" ? 1 : 0.9,
+                    x:
+                      position === "active"
+                        ? 0
+                        : position === "prev"
+                          ? -100
+                          : 100,
+                  }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <Card.Body>
-                    <Card.Title>{service.title}</Card.Title>
-                    <Card.Text>{service.description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+                  <Card
+                    className="shadow-lg p-3"
+                    style={{
+                      background: "linear-gradient(135deg, #A1D6E2, #1995AD)",
+                      width: "350px",
+                    }}
+                  >
+                    <Card.Body>
+                      <Card.Title>{service.title}</Card.Title>
+                      <Card.Text>{service.description}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="d-flex justify-content-center mt-3">
+            <button
+              className="btn btn-outline-primary mx-2"
+              onClick={prevSlide}
+            >
+              Previous
+            </button>
+            <button
+              className="btn btn-outline-primary mx-2"
+              onClick={nextSlide}
+            >
+              Next
+            </button>
+          </div>
         </Section>
 
         <Section title="Projects">
