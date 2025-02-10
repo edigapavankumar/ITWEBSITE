@@ -86,6 +86,7 @@ const themeWithCustomColors = createTheme({
 // Styled Main content
 // Styled Main content
 const Main = styled("main", {
+<<<<<<< HEAD
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   flexGrow: 1, // Take up the remaining space
@@ -121,6 +122,43 @@ const CustomAppBar = styled(AppBar, {
   },
 }));
 
+=======
+    shouldForwardProp: (prop) => prop !== "open",
+  })(({ theme, open }) => ({
+    flexGrow: 1, // Take up the remaining space
+    padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.default,
+    minHeight: "100vh", // Full height
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: open ? `${drawerWidth}px` : "0px", // Adjust margin based on drawer state
+    width: open ? `calc(100% - ${drawerWidth}px)` : "100%", // Adjust width based on drawer state
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "0px",
+      width: "100%",
+      padding: theme.spacing(1),
+    },
+  }));
+  
+  // Styled AppBar
+  const CustomAppBar = styled(AppBar, {
+    shouldForwardProp: (prop) => prop !== "open",
+  })(({ theme, open }) => ({
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
+    marginLeft: open ? `${drawerWidth}px` : "0px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      marginLeft: "0px",
+    },
+  }));
+  
+>>>>>>> musharraf10-main
 export default function AdminDashBoard() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -154,6 +192,11 @@ export default function AdminDashBoard() {
     }
   };
 
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> musharraf10-main
   return (
     <ThemeProvider theme={themeWithCustomColors}>
       <Box sx={{ display: "flex", flexGrow: 1, minHeight: "100vh" }}>
@@ -195,11 +238,15 @@ export default function AdminDashBoard() {
           >
             <Typography variant="h6">Menu</Typography>
             <IconButton onClick={handleDrawerToggle}>
+<<<<<<< HEAD
               {theme.direction === "ltr" ? (
                 <ChevronLeftIcon />
               ) : (
                 <ChevronRightIcon />
               )}
+=======
+              {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+>>>>>>> musharraf10-main
             </IconButton>
           </Box>
           <Divider />
@@ -245,11 +292,19 @@ export default function AdminDashBoard() {
           </List>
         </Drawer>
 
+<<<<<<< HEAD
         <Main open={open} style={{ marginLeft: open ? "0px" : "-240px" }}>
+=======
+        <Main open={open} style={{ marginLeft: open ? "0px" : "-240px"}}>
+>>>>>>> musharraf10-main
           <Toolbar />
           {renderContent()}
         </Main>
       </Box>
     </ThemeProvider>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> musharraf10-main
