@@ -19,6 +19,7 @@ import Unauthorized from "./pages/Unauthorized.jsx";
 import { UserContextProvider } from "./context/UserContext.jsx";
 import EmployeeDashBoard from "./components/DashboardComponent/EmployeeDashBoard.jsx";
 import ThirdPartyDB from "./components/DashboardComponent/ThirdPartyDB.jsx";
+import OHome from "./pages/HomePage/OHome.jsx";
 
 function App() {
   return (
@@ -30,11 +31,10 @@ function App() {
             <EmployeeContextProvider>
                 <Routes>
                   
-                  <Route path="/" element={<Home1 />} />
+                  <Route path="/" element={<OHome />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/login1" element={<Login1 />} />
 
-                  {/* Protected routes for employees */}
                   <Route
                     path="/employee"
                     element={
@@ -43,14 +43,14 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-                  {/* <Route
+                  <Route
                     path="/getemp"
                     element={
-                      <ProtectedRoute allowedRoles={['employee']}>
-                        
+                      <ProtectedRoute allowedRoles={['admin']}>
+                        <EmployeeListPage />
                       </ProtectedRoute>
                     }
-                  /> */}
+                  />
 
                   {/* Admin-only route */}
                   <Route
@@ -58,7 +58,7 @@ function App() {
                     element={
                       <ProtectedRoute allowedRoles={['admin']}>
                         <AdminDashBoard />
-                        {/* <EmployeeListPage /> */}
+                        <EmployeeListPage />
                       </ProtectedRoute>
                     }
                   />
