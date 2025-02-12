@@ -12,6 +12,8 @@ export const validateEmail = async (req, res) => {
       // Check if email exists in the database
       const user = await User.findOne({ email });
   
+      
+  
       if (user) {
         return res.status(200).json({ exists: true });
       } else {

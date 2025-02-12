@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { TextField, Button, Box, Typography, Link } from '@mui/material';
 import { UserContext } from '../context/UserContext.jsx'; // Import the context
 
@@ -22,6 +22,8 @@ const Login1 = () => {
         setError('User does not exist. Check email or sign up.');
       }
     } catch (err) {
+      console.log(err)
+
       setError('Error checking email.');
     }
   };
@@ -34,6 +36,7 @@ const Login1 = () => {
       setSuccess(true);
     } catch (err) {
       setError('Incorrect password');
+      console.log(err)
       setSuccess(false);
     }
   };
