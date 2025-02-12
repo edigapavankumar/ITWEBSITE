@@ -2,13 +2,13 @@ import {Router} from "express";
 import { deleteUsers, getOneUser, getUsers, postUsers, updateUser } from "../controllers/user.controller.js";
 import { isAuth } from "../middlewares/isAuth.js";
 
-const employeeRouter = new Router();
+const UserRouter = new Router();
 
-employeeRouter.get("/users",isAuth, getUsers);
-employeeRouter.get("/user/:id",isAuth, getOneUser);
-employeeRouter.post("/user",isAuth, postUsers);
-employeeRouter.delete("/user/:id",isAuth, deleteUsers);
-employeeRouter.put("/user/:id",isAuth, updateUser);
+UserRouter.get("/users",isAuth, getUsers);
+UserRouter.get("/user/:id",isAuth, getOneUser);
+UserRouter.post("/user",isAuth, postUsers);
+UserRouter.delete("/user/:id",isAuth, deleteUsers);
+UserRouter.put("/user/:id",isAuth, updateUser);
 
 
-export default employeeRouter;
+export default UserRouter;

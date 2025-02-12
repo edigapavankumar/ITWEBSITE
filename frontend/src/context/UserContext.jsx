@@ -74,7 +74,7 @@ export const UserContextProvider = ({ children }) => {
     validateEmail,
     Login,
   };
-
+  
   return (
     <UserContext.Provider value={data}>
       {children}

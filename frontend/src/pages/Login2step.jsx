@@ -17,7 +17,7 @@ const Login1 = () => {
       const userExists = await validateEmail(email);
       if (userExists) {
         setError('');
-        setStep(2); // Move to password step if email exists
+        setStep(2); 
       } else {
         setError('User does not exist. Check email or sign up.');
       }

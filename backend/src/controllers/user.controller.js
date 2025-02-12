@@ -15,15 +15,20 @@ export const getUsers=async(req,res)=>{
 
 export const postUsers = async (req, res) => {
     try {
+
         const user = new User(req.body);
+        
         const result = await user.save();
         res.status(201).json({ message: "User created successfully", user: result });
+
     } catch (err) {
+
         console.error("Error here:", err);
         res.status(500).json({ error: "Failed to create user", details: err.message });
     }
 };
 export const deleteUsers=async(req,res)=>{
+
     try {
         const user=await User.findByIdAndDelete(req.params.id);
         if(!user){

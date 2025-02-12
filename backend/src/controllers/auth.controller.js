@@ -26,15 +26,17 @@ export const validateEmail = async (req, res) => {
   };
 
 
-export const Login = async (req,res) =>{
-    const {email, password} = req.body;
-    console.log(email, password)
+export const Login = async ( req,res ) =>{
 
-    if(!email || !password){
-        return res.status(httpStatus.BAD_REQUEST).json({message : "Please Enter All Fields"})
-    }
 
     try{
+
+      const { email, password } = req.body;
+      console.log(email, password)
+
+      if(!email || !password){
+          return res.status(httpStatus.BAD_REQUEST).json({message : "Please Enter All Fields"})
+      }
 
         const user = await User.findOne({email});
         console.log(user)
