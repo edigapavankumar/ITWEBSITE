@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import Task from "../models/task.model.js";
->>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 import User from "../models/users.model.js";
 
 export const updateSalaryOrBonus = async (req, res) => {
@@ -83,11 +80,6 @@ export const getSalaryAndBonusData = async (req, res) => {
 };
 
 
-<<<<<<< HEAD
-
-
-
-=======
 export const getEmployeePerformance = async (req, res) => {
     try {
       // req.user is set by the authentication middleware
@@ -124,4 +116,3 @@ export const getEmployeePerformance = async (req, res) => {
     }
   };
   
->>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655

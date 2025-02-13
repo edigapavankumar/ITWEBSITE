@@ -25,11 +25,7 @@ export const generateLastMonthInvoice = async (req, res) => {
         //     payment.paymentDate >= lastMonth && payment.paymentDate <= today
         // );
 
-<<<<<<< HEAD
-        const payments = user.paymentHistory;
-=======
         const payments = user.paymentHistory; // realTime un Comment the above code comment this line
->>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 
         if (payments.length === 0) {
             return res.status(404).json({ message: "No salary records found for the last month" });
@@ -90,10 +86,6 @@ export const generateLastMonthInvoice = async (req, res) => {
             .lineTo(col3 + 80, yPosition + 5)
             .stroke();
 
-<<<<<<< HEAD
-        // Total Salary and Bonus
-=======
->>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
         doc.font("Helvetica-Bold");
         doc.text("Total:", col1, yPosition + 10);
         doc.text(totalSalary.toString(), col2, yPosition + 10);
@@ -105,13 +97,7 @@ export const generateLastMonthInvoice = async (req, res) => {
             res.download(invoicePath, `${user.firstName}_${user.lastName}_invoice_${monthName}.pdf`);
         });
 
-<<<<<<< HEAD
-    } catch (error) {
-        console.error("Error generating invoice:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-=======
     } catch(e){
         res.status(httpStatus.INTERNAL_SERVER_ERROR).json({message : `Error Occured : ${e.message}`})
->>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
     }
 };
