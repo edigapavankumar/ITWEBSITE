@@ -1,5 +1,4 @@
 import Notification from "../models/notification.model.js";
-import User from "../models/users.model.js";
 
 export const sendThirdPartyNotification = async (req, res) => {
     try {
@@ -113,4 +112,4 @@ export const getLastMonthNotifications = async (req, res) => {
         console.error("Error fetching notifications:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
-};
+}

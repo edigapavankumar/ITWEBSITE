@@ -3,9 +3,9 @@ import { getLastMonthNotifications, sendEmployeeNotification, sendTaskNotificati
 
 const userNotifyRouter = new Router();
 
-userNotifyRouter.route("/employeenotify").post(sendEmployeeNotification)
-userNotifyRouter.route("/thirdpartynotify").post(sendThirdPartyNotification)
-userNotifyRouter.route("/employeetasknotify").post(sendTaskNotification)
-userNotifyRouter.route("/notifyhistory").get(getLastMonthNotifications)
+userNotifyRouter.route("/employee-notify").post(sendEmployeeNotification)
+userNotifyRouter.route("/thirdparty-notify").post(sendThirdPartyNotification)
+userNotifyRouter.route("/employee-task-notfiy").post(sendTaskNotification)
+userNotifyRouter.route("/notify-history").get(getLastMonthNotifications)
 
 export default userNotifyRouter;

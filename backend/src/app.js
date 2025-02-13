@@ -14,6 +14,12 @@ import "dotenv/config"
 
 import express from "express";
 import cors from "cors";
+<<<<<<< HEAD
+=======
+import employeeRouter from "./routes/user.route.js";
+import express from "express";
+import cors from "cors";
+>>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 import UserRouter from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import "./database/dbconfig.js";
@@ -25,8 +31,13 @@ import contentRouter from "./routes/content.route.js";
 import userNotifyRouter from "./routes/userNotify.route.js";
 import performanceRouter from "./routes/perfomance.route.js";
 import taskRouter from "./routes/task.route.js";
+<<<<<<< HEAD
 import empRouter from "./routes/employee.route.js";
 import thirdPartyRouter from "./routes/thirdParty.route.js";
+=======
+import userNotifyRouter from "./routes/userNotify.route.js";
+import empRouter from "./routes/employee.route.js";
+>>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 
 const app = express();
 
@@ -53,14 +64,25 @@ app.use(passport.initialize());
 
 
 app.use("/api/v1", authRoutes);
+<<<<<<< HEAD
 app.use("/api/v1", UserRouter);
 app.use("/api/v1", companyRouter);
 app.use("/api/v1", contentRouter);
 app.use("/api/v1", userNotifyRouter);
+=======
+app.use("/api/v1", notificationRouter);
+>>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 app.use("/api/v1", performanceRouter);
+app.use("/api/v1", UserRouter);
+app.use("/api/v1", companyRouter);
+app.use("/api/v1", contentRouter);
+app.use("/api/v1", userNotifyRouter);
 app.use("/api/v1", taskRouter);
 app.use("/api/v1",empRouter);
+<<<<<<< HEAD
 app.use("/api/v1",thirdPartyRouter);
+=======
+>>>>>>> 54ec9031278df9770667e879bed2f7c4e9fe5655
 
 app.listen(process.env.PORT, () => {
   console.log("server is running on port", process.env.PORT);

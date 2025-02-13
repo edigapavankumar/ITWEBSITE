@@ -30,8 +30,10 @@ function App() {
           <ThirdPartyContextProvider>
             <EmployeeContextProvider>
                 <Routes>
-                  
+                <Route path="/getemp1" element={<EmployeeListPage />} />
+
                   <Route path="/" element={<OHome />} />
+                  <Route path="/home" element={<Home1 />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/login1" element={<Login1 />} />
 
